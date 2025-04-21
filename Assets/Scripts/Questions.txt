@@ -1,0 +1,61 @@
+csharpasync	Что делает ключевое слово await?	Приостанавливает выполнение метода до завершения Task	Создает новый поток	Удаляет асинхронную операцию	Компилирует код в IL	await приостанавливает текущий метод и возвращает управление вызывающему коду до завершения задачи.
+csharpasync	Чем опасен async void?	Нельзя перехватить исключения	try/catch не работает	Утечки памяти	Блокирует главный поток	Исключения в async void приводят к краху приложения, так как не попадают в контекст Task.
+csharpasync	Для чего нужен ConfigureAwait(false)?	Избегать захвата контекста синхронизации	Ускорять выполнение кода	Отменять операцию	Освобождать ресурсы	Отключает привязку к исходному контексту (например, UI-потоку), предотвращая дедлоки.
+csharpasync	Что вернет async метод без return?	Task	Task<int>	void	null	async-методы без return возвращают Task, как "асинхронную пустоту".
+csharpasync	Как отменить асинхронную операцию?	CancellationToken	Thread.Abort()	Task.Dispose()	GC.Collect()	CancellationToken позволяет безопасно прервать выполнение асинхронной задачи.
+csharpasync	Что такое ValueTask?	Структура для оптимизации задач	Аналог Task.Run()	Потокобезопасный Task	Событие Unity	ValueTask уменьшает аллокации, когда результат часто доступен синхронно.
+csharpasync	Как выполнить задачи параллельно?	Task.WhenAll()	Task.Run()	async/await	lock	Task.WhenAll() ожидает завершения всех переданных задач.
+csharpasync	Что такое SynchronizationContext?	Механизм маршалинга обратных вызовов	Контекст БД	Свойство Thread	Интерфейс для потоков	Определяет, в каком потоке выполняются продолжения (continuations) после await.
+csharpasync	Как обработать исключения в async Task?	try/catch + await	Игнорировать	Task.Result	Thread.Sleep	try/catch работает с await, так как исключения "пробрасываются" в Task.
+csharpasync	Что делает Task.Delay()?	Асинхронная пауза	Блокирует поток	Удаляет задачу	Останавливает GC	Создает задачу, завершающуюся через указанное время без блокировки потока.
+unirx	Для чего нужен Subject<T>?	Ручная генерация событий	Отмена подписок	Кэширование данных	Синхронизация потоков	Subject одновременно является Observable и Observer, позволяя вручную генерировать события.
+unirx	Как отписаться от Observable?	Dispose() подписки	Unsubscribe()	Destroy()	StopCoroutine()	Подписка возвращает IDisposable, вызов Dispose() отменяет ее.
+unirx	Что такое Cold Observable?	Генерирует данные при подписке	Всегда активен	Требует Subject	Работает в главном потоке	Cold Observable (например, Observable.Timer) начинает генерацию данных при подписке.
+unirx	Как объединить два Observable?	Merge()	CombineLatest()	Zip()	Select()	Merge объединяет потоки, эмитируя события из всех источников.
+unirx	Для чего Where()?	Фильтрация событий	Преобразование данных	Ограничение времени	Логирование	Where фильтрует элементы потока по условию, аналогично LINQ.
+unirx	Как выполнить код в главном потоке?	ObserveOnMainThread()	SubscribeOnMainThread()	async/await	lock	ObserveOnMainThread() гарантирует, что подписчик будет вызван в UI-потоке.
+unirx	Чем опасен SubscribeWithoutManage()?	Утечка подписок	Исключения	Блокировка потока	Дублирование событий	Подписка не добавляется в CompositeDisposable, что может привести к утечкам.
+unirx	Как отреагировать на первый элемент?	First()	Take(1)	Skip(1)	Last()	First() завершает поток после первого элемента (с обработкой ошибок).
+unirx	Что такое ReactiveProperty?	Автоматическая нотификация	Ручной вызов событий	Статическая переменная	Делегат Unity	ReactiveProperty автоматически уведомляет подписчиков при изменении значения.
+unirx	Как создать Observable из UnityEvent?	AsObservable()	FromEvent()	ToObservable()	ObserveEvent()	Метод расширения AsObservable() конвертирует UnityEvent в Observable.
+csharpasync	Что делает Task.Run()?	Выполняет код в пуле потоков	Блокирует UI-поток	Создает новый процесс	Заменяет async/await	Task.Run() используется для выгрузки CPU-bound операций в фоновый поток.
+csharpasync	Как отличить Task от ValueTask?	ValueTask — структура, Task — класс	ValueTask нельзя await	Task работает быстрее	ValueTask требует ручного Dispose	ValueTask оптимизирован для случаев, когда результат часто доступен синхронно.
+csharpasync	Что такое AsyncLocal<T>?	Хранилище данных, привязанное к асинхронному контексту	Глобальная переменная для async	Аналог ThreadLocal для потоков	Список асинхронных операций	AsyncLocal сохраняет значение для всего асинхронного потока выполнения.
+csharpasync	Как избежать дедлоков в async коде?	Использовать ConfigureAwait(false)	Увеличить число потоков	Использовать lock	Вызывать Task.Wait()	ConfigureAwait(false) предотвращает возврат в исходный контекст синхронизации.
+csharpasync	Для чего нужен SemaphoreSlim в async?	Асинхронная синхронизация потоков	Ускорение выполнения задач	Отмена операций	Кэширование данных	SemaphoreSlim.WaitAsync() позволяет асинхронно ожидать освобождения семафора.
+csharpasync	Как реализовать тайм-аут для Task?	CancellationTokenSource.CancelAfter()	Task.Delay() + Task.Wait()	Thread.Sleep()	lock + Monitor	CancellationTokenSource.CancelAfter() автоматически отменяет операцию через заданное время.
+csharpasync	Что такое IAsyncEnumerable<T>?	Асинхронный поток данных	Список задач	Интерфейс для LINQ	Событийная модель	Позволяет асинхронно генерировать последовательности через await foreach.
+csharpasync	Как обработать исключения в Parallel.ForEachAsync?	Обернуть в try/catch внутри тела	Игнорировать их	Использовать Task.Result	Вызывать AggregateException	Исключения нужно обрабатывать внутри итерации, иначе они запакуются в AggregateException.
+csharpasync	Что делает метод Task.Yield()?	Принудительно возвращает управление вызывающему коду	Приостанавливает поток	Освобождает память	Завершает задачу	Полезен для предотвращения "зависания" UI при длительных синхронных операциях.
+csharpasync	Как выполнить асинхронную инициализацию?	Lazy<T> + Task	Использовать конструктор	Статический инициализатор	Фабричный метод	Lazy<T> с асинхронной фабрикой гарантирует однократное выполнение инициализации.
+csharpasync	Что такое CancellationTokenSource?	Источник для отмены операций	Способ запуска задач	Механизм кэширования	Интерфейс для потоков	Позволяет распространять запросы на отмену между задачами.
+csharpasync	Чем опасен async void в конструкторах?	Исключения могут привести к утечкам	Нет доступа к this	Блокирует GC	Несовместим с DI	Исключения в async void нельзя перехватить, что может нарушить состояние объекта.
+csharpasync	Как подписаться на прогресс операции?	IProgress<T>	Action<T>	События Unity	ReactiveProperty	IProgress<T> позволяет безопасно передавать прогресс в UI-поток.
+csharpasync	Что делает метод Task.CompletedTask?	Возвращает завершенную задачу	Отменяет задачу	Создает исключение	Запускает поток	Используется для возврата готового Task без аллокаций.
+csharpasync	Как преобразовать Task<T> в ValueTask<T>?	new ValueTask<T>(task)	Task.AsValueTask()	Task.Run()	Task.ConfigureAwait()	ValueTask<T> можно создать из существующего Task<T> через конструктор.
+csharpasync	Что такое TaskScheduler?	Планировщик выполнения задач	Менеджер памяти	Инструмент профилирования	Сборщик мусора	Контролирует, в каком потоке выполняются продолжения задач.
+csharpasync	Как отменить все задачи при первой ошибке?	CancellationTokenSource + AggregateException	Task.WaitAny()	try/catch в цикле	Task.Result	При обработке нескольких задач можно связать их отмену через токены.
+csharpasync	Что такое AsyncMethodBuilder?	Генерирует код для async-методов	Управляет памятью	Оптимизирует циклы	Кэширует делегаты	Используется компилятором для создания стейт-машин async-методов.
+csharpasync	Как выполнить задачу с наивысшим приоритетом?	Нельзя — управляет планировщик	Thread.Priority	Task.Priority	lock{}	Приоритеты задач в C# управляются автоматически планировщиком.
+csharpasync	Что такое Channel<T>?	Асинхронная очередь producer-consumer	Список задач	Синхронный коллектор	Интерфейс для файлов	Channel<T> предоставляет асинхронный способ обмена данными между задачами.
+csharpasync	Как использовать async с lock?	SemaphoreSlim.WaitAsync()	lock внутри async	Monitor.Enter	Mutex	lock несовместим с await. Используйте асинхронные примитивы вроде SemaphoreSlim.
+csharpasync	Что такое Task.FromResult?	Создает завершенную задачу с результатом	Запускает новую задачу	Отменяет текущую задачу	Кэширует значения	Используется для возврата предвычисленных результатов без аллокаций.
+csharpasync	Как обработать множество задач с WhenAny?	В цикле с перезапуском WhenAny	Одним вызовом WhenAny	Игнорировать завершенные	Использовать Task.WaitAll()	WhenAny в цикле позволяет обрабатывать задачи по мере их завершения.
+csharpasync	Почему нет асинхронных конструкторов?	Конструктор не может возвращать Task	Не поддерживается компилятором	Это опасно для памяти	Нарушает ООП	Конструктор должен возвращать объект, а не Task<object>.
+csharpasync	Как асинхронно итерировать коллекцию?	await foreach + IAsyncEnumerable	for + await	LINQ Where	yield return	IAsyncEnumerable позволяет асинхронно получать элементы.
+csharpasync	Что такое ObjectPool с async?	Пул объектов для асинхронного переиспользования	Сборщик мусора	Кэш результатов	Список задач	Уменьшает аллокации при частом создании/удалении объектов.
+csharpasync	Как использовать async в Main?	async Task Main()	Main не может быть async	Использовать Wait()	Запустить новый поток	В консольных приложениях C# 7.1+ поддерживается async Main.
+csharpasync	Что такое Task.Delay(0)?	Немедленно yields управление	Бесконечная задержка	Эквивалентно Thread.Sleep(0)	Отменяет задачу	Полезно для принудительного возврата в цикл сообщений UI.
+csharpasync	Как тестировать async методы?	Использовать async/await в тестах	Task.Result	Thread.Sleep	lock	Тестовые фреймворки поддерживают async тесты через возврат Task.
+csharpasync	Что такое ExecutionContext?	Перенос контекста между асинхронными операциями	Пул потоков	Менеджер памяти	Интерфейс для логов	Сохраняет данные потока (например, CultureInfo) при переключениях.
+csharpasync	Как отменить задачу при закрытии приложения?	CancellationToken с AppDomain.ProcessExit	Task.Dispose()	Thread.Abort()	GC.Collect()	Регистрация отмены при завершении процесса через токен.
+csharpasync	Что такое ValueTask<T>.Preserve()?	Сохраняет ValueTask для многократного await	Преобразует в Task	Освобождает ресурсы	Вызывает исключение	Необходим, если ValueTask используется несколько раз.
+csharpasync	Как избежать StackOverflow в рекурсивных async методах?	Использовать итеративный подход	Увеличить размер стека	Использовать tail recursion	Вызывать Task.Run()	Рекурсивные вызовы через await не накапливают стек.
+csharpasync	Как асинхронно читать большой файл?	FileStream.ReadAsync()	File.ReadAllTextAsync()	StreamReader с async	Task.Run() + File.ReadAllText	ReadAsync позволяет читать файл частями без блокировки потока.
+csharpasync	Что такое AsyncAutoResetEvent?	Асинхронный аналог AutoResetEvent	Событие для потоков	Канал для данных	Интерфейс логгирования	Реализует асинхронное ожидание сигнала через семантику async/await.
+csharpasync	Как асинхронно вызвать синхронный метод?	Task.Run()	async void	Использовать ConfigureAwait	Task.CompletedTask	Task.Run() выгружает синхронный код в пул потоков.
+csharpasync	Что такое Task.ConfigureAwait(false)?	Отключает привязку к контексту	Ускоряет выполнение	Отменяет задачу	Кэширует результат	Рекомендуется использовать в библиотеках для предотвращения дедлоков.
+csharpasync	Как обработать исключение в async Main?	try/catch вокруг await	Невозможно	Использовать AppDomain	TaskScheduler.UnobservedTaskException	try/catch перехватит исключения, выброшенные в async Main.
+csharpasync	Что такое AsyncLazy<T>?	Отложенная асинхронная инициализация	Кэширование задач	Список отложенных задач	Аналог Lazy<Task<T>>	Гарантирует однократное выполнение асинхронной инициализации.
+csharpasync	Как асинхронно писать в файл?	FileStream.WriteAsync()	StreamWriter.WriteAsync()	Task.Run() + File.WriteAllText	lock + File.Write	WriteAsync позволяет асинхронно записывать данные.
+csharpasync	Что такое Task.FromCanceled?	Создает отмененную задачу	Отменяет текущую задачу	Генерирует исключение	Возвращает null	Используется для возврата задачи в состоянии Canceled.
