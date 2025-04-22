@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using Cysharp.Threading.Tasks;
 
 namespace MY.QUIZE
 {
@@ -46,9 +47,10 @@ namespace MY.QUIZE
 
 
 
-        private void Start()
+        private async UniTaskVoid Start()
         {
-            allQuestions = QuizParser.ParseQuestions(questionsData);
+            var text = await TextGetterUrl.GetText();
+            allQuestions = QuizParser.ParseQuestions(text);
             InitializeThemes(allQuestions);
             quizPanel.SetActive(false);
         }

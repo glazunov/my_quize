@@ -6,11 +6,11 @@ namespace MY.QUIZE
 {
     public static class QuizParser
     {
-        public static List<QuestionData> ParseQuestions(TextAsset tsvFile)
+        public static List<QuestionData> ParseQuestions(string tsvFile)
         {
             var questions = new List<QuestionData>();
 
-            foreach (string line in tsvFile.text.Split('\n'))
+            foreach (string line in tsvFile.Split('\n'))
             {
                 if (string.IsNullOrEmpty(line)) continue;
 
