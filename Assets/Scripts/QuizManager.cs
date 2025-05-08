@@ -113,12 +113,17 @@ namespace MY.QUIZE
             foreach (var btn in answerButtons)
             {
                 btn.interactable = false;
-                var colors = btn.colors;
-                colors.disabledColor = (btn == answerButtons[selectedIndex])
-                    ? (selectedIndex == correctAnswerIndex ? Color.green : Color.red)
-                    : colors.disabledColor;
-                btn.colors = colors;
             }
+
+            
+            var selectedColors = answerButtons[selectedIndex].colors;
+            selectedColors.disabledColor = Color.red;
+            answerButtons[selectedIndex].colors = selectedColors;
+            
+
+            var rightColors = answerButtons[correctAnswerIndex].colors;
+            rightColors.disabledColor = Color.green;
+            answerButtons[correctAnswerIndex].colors = rightColors;
 
             explanation_text.text = currentQuestions[currentQuestionIndex].explanation;
             explanation_text.gameObject.SetActive(true);
